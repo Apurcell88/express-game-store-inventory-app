@@ -3,11 +3,18 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+
 // Set up mongoose connection
 const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', 'false');
-const mongoDB = 'mongodb+srv://apurcell88:cubs1988@cluster0.8rkyrqo.mongodb.net/?retryWrites=true&w=majority'
+const mongoDB = 'mongodb+srv://apurcell88:cubs1988@cluster0.8rkyrqo.mongodb.net/game_store?retryWrites=true&w=majority'
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}
+// End of mongoose connection setup
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
